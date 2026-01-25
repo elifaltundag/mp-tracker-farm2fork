@@ -1,0 +1,30 @@
+# Environment
+.env
+
+# Python
+*.pyc
+__pycache__/
+venv/
+.pytest_cache/
+
+# Logs
+*.log
+
+# JavaScript
+node_modules/
+
+# OS
+.DS_Store
+
+# Data files
+*.xlsx
+*.xls
+
+# Docker
+mongo_data/
+internal/
+
+.claude/
+
+CLAUDE.md
+ROADMAP.md

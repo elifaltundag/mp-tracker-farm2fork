@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mikroplastik Takip Sistemi</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <h1>🔬 Mikroplastik Takip Sistemi</h1>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Toolbar -->
+        <div class="toolbar">
+            <button id="btnNewSample" class="btn btn-primary">+ Yeni Örnek</button>
+            <button class="btn btn-secondary" disabled title="Yakında eklenecek">📥 Excel İçe Aktar</button>
+            <button class="btn btn-secondary" disabled title="Yakında eklenecek">📤 Excel'e Aktar</button>
+        </div>
+
+        <!-- Filters -->
+        <div class="filters">
+            <div class="filter-group">
+                <label for="filterOrnekTuru">Örnek Türü</label>
+                <select id="filterOrnekTuru">
+                    <option value="">Tümü</option>
+                    <option value="Standart Örnek">Standart Örnek</option>
+                    <option value="Referans Örnek">Referans Örnek</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label for="filterJeoloji">Jeoloji</label>
+                <select id="filterJeoloji">
+                    <option value="">Tümü</option>
+                    <option value="Alüvyon">Alüvyon</option>
+                    <option value="Alüvyon yelpazesi">Alüvyon yelpazesi</option>
+                    <option value="Andezit">Andezit</option>
+                    <option value="Kireçtaşı">Kireçtaşı</option>
+                    <option value="Konglomera">Konglomera</option>
+                    <option value="Mermer">Mermer</option>
+                    <option value="Metamorfik">Metamorfik</option>
+                    <option value="Ofiyolitik">Ofiyolitik</option>
+                </select>
+            </div>
+
+            <button id="btnFilter" class="btn btn-success">Filtrele</button>
+            <button id="btnClearFilter" class="btn btn-secondary">Temizle</button>
+        </div>
+
+        <!-- Loading -->
+        <div id="loading">Yükleniyor...</div>
+
+        <!-- Table -->
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Örnek No</th>
+                        <th>Tarih</th>
+                        <th>Tür</th>
+                        <th>Konum</th>
+                        <th>MP Toplam</th>
+                        <th>İşlemler</th>
+                    </tr>
+                </thead>
+                <tbody id="samplesTableBody">
+                    <!-- Dinamik içerik buraya yüklenecek -->
+                </tbody>
+            </table>
+
+            <div class="stats">
+                <span id="totalRecords">Toplam 0 kayıt</span>
+            </div>
+        </div>
+
+        <!-- Pagination -->
+        <div id="pagination" class="pagination">
+            <!-- Dinamik sayfalama buraya yüklenecek -->
+        </div>
+    </div>
+
+    <!-- Sample Form Modal -->
+    <div id="sampleFormModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="formTitle">Yeni Örnek</h2>
+            </div>
+
+            <form id="sampleForm">
+                <input type="hidden" id="sampleId" name="sampleId">
+
+                <!-- Temel Bilgiler -->
+                <div class="form-group">
+                    <label for="ornek_no">Örnek Numarası *</label>
+                    <input type="text" id="ornek_no" name="ornek_no" required placeholder="Örnek numarasını girin">
+                </div>
+
+                <div class="form-group-inline">
+                    <div class="form-group">
+                        <label for="ornekleme_tarihi">Örnekleme Tarihi *</label>
+                        <input type="date" id="ornekleme_tarihi" name="ornekleme_tarihi" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ornek_turu">Örnek Türü *</label>
+                        <select id="ornek_turu" name="ornek_turu" required>
+                            <option value="">Seçiniz</option>
+                            <option value="Standart Örnek">Standart Örnek</option>
+                            <option value="Referans Örnek">Referans Örnek</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Konum Bilgileri -->
+                <div class="form-group">
+                    <label for="yerlesim_yeri">Yerleşim Yeri *</label>
+                    <input type="text" id="yerlesim_yeri" name="yerlesim_yeri" required placeholder="Örn: Hasköy">
+                </div>
+
+                <div class="form-group-inline">
+                    <div class="form-group">
+                        <label for="enlem">Enlem</label>
+                        <input type="number" step="0.000001" id="enlem" name="enlem" placeholder="Örn: 38.127516">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="boylam">Boylam</label>
+                        <input type="number" step="0.000001" id="boylam" name="boylam" placeholder="Örn: 27.509202">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="jeoloji">Jeoloji</label>
+                    <select id="jeoloji" name="jeoloji">
+                        <option value="">Seçiniz</option>
+                        <option value="Alüvyon">Alüvyon</option>
+                        <option value="Alüvyon yelpazesi">Alüvyon yelpazesi</option>
+                        <option value="Andezit">Andezit</option>
+                        <option value="Kireçtaşı">Kireçtaşı</option>
+                        <option value="Konglomera">Konglomera</option>
+                        <option value="Mermer">Mermer</option>
+                        <option value="Metamorfik">Metamorfik</option>
+                        <option value="Ofiyolitik">Ofiyolitik</option>
+                    </select>
+                </div>
+
+                <!-- Tarım Bilgileri -->
+                <div class="form-group">
+                    <label for="sulama_turu">Sulama Türü</label>
+                    <select id="sulama_turu" name="sulama_turu">
+                        <option value="">Seçiniz</option>
+                        <option value="Salma Sulama">Salma Sulama</option>
+                        <option value="Damlama Sulama">Damlama Sulama</option>
+                        <option value="Yağmurlama Sulama">Yağmurlama Sulama</option>
+                        <option value="Arık Sulama">Arık Sulama</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="plastik_malc" name="plastik_malc">
+                        <label for="plastik_malc">Plastik Malç Kullanımı</label>
+                    </div>
+                </div>
+
+                <!-- Form Actions -->
+                <div class="form-actions">
+                    <button type="button" id="btnCancelForm" class="btn btn-secondary">İptal</button>
+                    <button type="button" id="btnSaveSample" class="btn btn-primary">Kaydet</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/constants.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
