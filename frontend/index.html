@@ -101,8 +101,8 @@
 
                 <div class="form-group-inline">
                     <div class="form-group">
-                        <label for="ornekleme_tarihi">Örnekleme Tarihi *</label>
-                        <input type="date" id="ornekleme_tarihi" name="ornekleme_tarihi" required>
+                        <label for="ornekleme_tarihi">Örnekleme Tarihi</label>
+                        <input type="date" id="ornekleme_tarihi" name="ornekleme_tarihi">
                     </div>
 
                     <div class="form-group">
@@ -119,6 +119,11 @@
                 <div class="form-group">
                     <label for="yerlesim_yeri">Yerleşim Yeri *</label>
                     <input type="text" id="yerlesim_yeri" name="yerlesim_yeri" required placeholder="Örn: Hasköy">
+                </div>
+
+                <div class="form-group">
+                    <label for="ozel_aciklama">Detay</label>
+                    <textarea id="ozel_aciklama" name="ozel_aciklama" rows="2" placeholder="Örn: Karpuz Tarlası"></textarea>
                 </div>
 
                 <div class="form-group-inline">
@@ -146,6 +151,49 @@
                         <option value="Metamorfik">Metamorfik</option>
                         <option value="Ofiyolitik">Ofiyolitik</option>
                     </select>
+                </div>
+
+                <div class="form-group-inline">
+                    <div class="form-group">
+                        <label for="yukseklik_m">Deniz Seviyesinden Yükseklik (m)</label>
+                        <input type="number" step="0.01" id="yukseklik_m" name="yukseklik_m" placeholder="Örn: 19">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="egim_yuzde">Eğim (%)</label>
+                        <input type="number" step="0.01" id="egim_yuzde" name="egim_yuzde" placeholder="Örn: 1.2">
+                    </div>
+                </div>
+
+                <!-- Örnek Bilgileri -->
+                <div class="form-group-inline">
+                    <div class="form-group">
+                        <label for="planlama_ornek_no">Planlama Örnek No</label>
+                        <input type="text" id="planlama_ornek_no" name="planlama_ornek_no" placeholder="Örn: T7-1">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ornek_tur_detay">Planlanan Detay / Ürün</label>
+                        <input type="text" id="ornek_tur_detay" name="ornek_tur_detay" placeholder="Örn: Karpuz-YAS">
+                    </div>
+                </div>
+
+                <div class="form-group-inline">
+                    <div class="form-group">
+                        <label for="alinan_ornek_turu">Alınan Örnek Türü</label>
+                        <select id="alinan_ornek_turu" name="alinan_ornek_turu">
+                            <option value="">Seçiniz</option>
+                            <option value="Toprak">Toprak</option>
+                            <option value="Su">Su</option>
+                            <option value="Gübre">Gübre</option>
+                            <option value="Bitki">Bitki</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ornek_ozelligi">Örnek Özelliği (Derinlik veya Bitki Türü)</label>
+                        <input type="text" id="ornek_ozelligi" name="ornek_ozelligi" placeholder="Örn: (tek derinlik) 0-10 cm / (iki derinlik) 0-10 cm, 10-20 cm / bitki türü adı">
+                    </div>
                 </div>
 
                 <!-- Tarım Bilgileri -->

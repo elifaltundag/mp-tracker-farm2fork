@@ -44,7 +44,11 @@ class SampleRepository:
         total = await self.collection.count_documents(query)
 
         # Sayfalı sonuçlar
-        cursor = self.collection.find(query).skip(skip).limit(limit).sort("ornekleme_tarihi", -1)
+        # Tarihli kayıtları önce göster; tarihsiz kayıtları kendi içinde örnek numarasına göre sırala.
+        cursor = self.collection.find(query).sort([
+            ("ornekleme_tarihi", -1),
+            ("ornek_no", 1)
+        ]).skip(skip).limit(limit)
         samples = await cursor.to_list(length=limit)
 
         formatted_samples = [self._format_sample(s) for s in samples]

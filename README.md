@@ -85,6 +85,34 @@ curl -X POST http://localhost:8000/api/v1/samples \
   }'
 ```
 
+**Excel'deki saha verisine uygun örnek:**
+```bash
+curl -X POST http://localhost:8000/api/v1/samples \
+  -H "Content-Type: application/json" \
+  -d '{
+    "ornek_no": "1_1",
+    "ornekleme_tarihi": "2026-03-30",
+    "ornek_turu": "Standart Örnek",
+    "konum": {
+      "yerlesim_yeri": "Hasköy",
+      "ozel_aciklama": "Karpuz Tarlası",
+      "koordinatlar": {
+        "enlem": 38.127516,
+        "boylam": 27.509202
+      },
+      "jeoloji": "Kuvarterner Alüvyon (A)",
+      "yukseklik_m": 19,
+      "egim_yuzde": 1.2
+    },
+    "ornek": {
+      "planlama_ornek_no": "T7-1",
+      "planlanan_detay": "Karpuz-YAS",
+      "tur": "Toprak",
+      "ozellik": "0-10 cm"
+    }
+  }'
+```
+
 **Örnekleri listele:**
 ```bash
 curl http://localhost:8000/api/v1/samples
