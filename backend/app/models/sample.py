@@ -44,6 +44,8 @@ class Tarim(BaseModel):
 
 class Ornek(BaseModel):
     """Alınan örnek bilgileri."""
+    planlama_ornek_no: Optional[str] = Field(None, description="Planlama örnek numarası")
+    planlanan_detay: Optional[str] = Field(None, description="Planlanan örnek alt türü veya ürün bilgisi")
     tur: Optional[str] = Field(None, description="Örnek türü (Toprak, Su, Gübre, Bitki)")
     ozellik: Optional[str] = Field(None, description="Derinlik veya bitki türü")
 
@@ -120,7 +122,7 @@ class MPAnaliz(BaseModel):
 class SampleCreate(BaseModel):
     """Yeni örnek oluşturma modeli."""
     ornek_no: str = Field(..., description="Benzersiz örnek numarası")
-    ornekleme_tarihi: date = Field(..., description="Örnekleme tarihi")
+    ornekleme_tarihi: Optional[date] = Field(None, description="Örnekleme tarihi")
     ornek_turu: str = Field(..., description="Örnek türü (Standart Örnek / Referans Örnek)")
     konum: Konum
     tarim: Optional[Tarim] = None
@@ -131,20 +133,25 @@ class SampleCreate(BaseModel):
     class Config:
         json_schema_extra = {
             "example": {
-                "ornek_no": "1",
-                "ornekleme_tarihi": "2024-04-28",
+                "ornek_no": "1_1",
+                "ornekleme_tarihi": "2026-03-30",
                 "ornek_turu": "Standart Örnek",
                 "konum": {
                     "yerlesim_yeri": "Hasköy",
+                    "ozel_aciklama": "Karpuz Tarlası",
                     "koordinatlar": {
                         "enlem": 38.127516,
                         "boylam": 27.509202
                     },
-                    "jeoloji": "Alüvyon"
+                    "yukseklik_m": 19,
+                    "egim_yuzde": 1.2,
+                    "jeoloji": "Kuvarterner Alüvyon (A)"
                 },
-                "tarim": {
-                    "sulama_turu": "Damlama Sulama",
-                    "plastik_malc": True
+                "ornek": {
+                    "planlama_ornek_no": "T7-1",
+                    "planlanan_detay": "Karpuz-YAS",
+                    "tur": "Toprak",
+                    "ozellik": "0-10 cm"
                 }
             }
         }

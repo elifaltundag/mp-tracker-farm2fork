@@ -146,12 +146,19 @@ class App {
 
             // Form alanlarını doldur
             document.getElementById('ornek_no').value = sample.ornek_no;
-            document.getElementById('ornekleme_tarihi').value = sample.ornekleme_tarihi;
+            document.getElementById('ornekleme_tarihi').value = sample.ornekleme_tarihi || '';
             document.getElementById('ornek_turu').value = sample.ornek_turu;
             document.getElementById('yerlesim_yeri').value = sample.konum.yerlesim_yeri;
+            document.getElementById('ozel_aciklama').value = sample.konum.ozel_aciklama || '';
             document.getElementById('enlem').value = sample.konum.koordinatlar?.enlem || '';
             document.getElementById('boylam').value = sample.konum.koordinatlar?.boylam || '';
             document.getElementById('jeoloji').value = sample.konum.jeoloji || '';
+            document.getElementById('yukseklik_m').value = sample.konum.yukseklik_m || '';
+            document.getElementById('egim_yuzde').value = sample.konum.egim_yuzde || '';
+            document.getElementById('planlama_ornek_no').value = sample.ornek?.planlama_ornek_no || '';
+            document.getElementById('ornek_tur_detay').value = sample.ornek?.planlanan_detay || '';
+            document.getElementById('alinan_ornek_turu').value = sample.ornek?.tur || '';
+            document.getElementById('ornek_ozelligi').value = sample.ornek?.ozellik || '';
             document.getElementById('sulama_turu').value = sample.tarim?.sulama_turu || '';
             document.getElementById('plastik_malc').checked = sample.tarim?.plastik_malc || false;
         } catch (error) {
@@ -167,15 +174,24 @@ class App {
         // Form verilerini JSON'a çevir
         const sampleData = {
             ornek_no: formData.get('ornek_no'),
-            ornekleme_tarihi: formData.get('ornekleme_tarihi'),
+            ornekleme_tarihi: formData.get('ornekleme_tarihi') || null,
             ornek_turu: formData.get('ornek_turu'),
             konum: {
                 yerlesim_yeri: formData.get('yerlesim_yeri'),
+                ozel_aciklama: formData.get('ozel_aciklama') || null,
                 koordinatlar: formData.get('enlem') && formData.get('boylam') ? {
                     enlem: parseFloat(formData.get('enlem')),
                     boylam: parseFloat(formData.get('boylam'))
                 } : null,
-                jeoloji: formData.get('jeoloji') || null
+                jeoloji: formData.get('jeoloji') || null,
+                yukseklik_m: formData.get('yukseklik_m') ? parseFloat(formData.get('yukseklik_m')) : null,
+                egim_yuzde: formData.get('egim_yuzde') ? parseFloat(formData.get('egim_yuzde')) : null
+            },
+            ornek: {
+                planlama_ornek_no: formData.get('planlama_ornek_no') || null,
+                planlanan_detay: formData.get('ornek_tur_detay') || null,
+                tur: formData.get('alinan_ornek_turu') || null,
+                ozellik: formData.get('ornek_ozelligi') || null
             },
             tarim: {
                 sulama_turu: formData.get('sulama_turu') || null,
