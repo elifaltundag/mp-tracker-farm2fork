@@ -25,7 +25,7 @@ mongo_data/
 internal/
 
 .claude/
-.codex/
+.codex
 
 CLAUDE.md
 ROADMAP.md
