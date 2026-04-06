@@ -115,14 +115,39 @@
                     </div>
                 </div>
 
-                <!-- Konum Bilgileri -->
+                <!-- Örnek Bilgileri -->
+                <div class="form-group-inline">
+                    <div class="form-group">
+                        <label for="planlama_ornek_no">Planlama Örnek No</label>
+                        <input type="text" id="planlama_ornek_no" name="planlama_ornek_no" placeholder="Örn: T7-1">
+                    </div>
+                </div>
+
+                <div class="form-group-inline">
+                    <div class="form-group">
+                        <label for="alinan_ornek_turu">Planlanan Örnek Türü</label>
+                        <select id="alinan_ornek_turu" name="alinan_ornek_turu">
+                            <option value="">Seçiniz</option>
+                            <option value="Toprak">Toprak</option>
+                            <option value="Su">Su</option>
+                            <option value="Gübre">Gübre</option>
+                            <option value="Bitki">Bitki</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ornek_tur_detay">Planlanan Örnek Türü - Detay</label>
+                        <input type="text" id="ornek_tur_detay" name="ornek_tur_detay" placeholder="Örn: Karpuz-YAS">
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <label for="yerlesim_yeri">Yerleşim Yeri *</label>
                     <input type="text" id="yerlesim_yeri" name="yerlesim_yeri" required placeholder="Örn: Hasköy">
                 </div>
 
                 <div class="form-group">
-                    <label for="ozel_aciklama">Detay</label>
+                    <label for="ozel_aciklama">Yerleşim Yeri - Detay</label>
                     <textarea id="ozel_aciklama" name="ozel_aciklama" rows="2" placeholder="Örn: Karpuz Tarlası"></textarea>
                 </div>
 
@@ -139,7 +164,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="jeoloji">Jeoloji</label>
+                    <label for="jeoloji">Jeoloji / Mineroloji</label>
                     <select id="jeoloji" name="jeoloji">
                         <option value="">Seçiniz</option>
                         <option value="Alüvyon">Alüvyon</option>
@@ -165,31 +190,7 @@
                     </div>
                 </div>
 
-                <!-- Örnek Bilgileri -->
                 <div class="form-group-inline">
-                    <div class="form-group">
-                        <label for="planlama_ornek_no">Planlama Örnek No</label>
-                        <input type="text" id="planlama_ornek_no" name="planlama_ornek_no" placeholder="Örn: T7-1">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="ornek_tur_detay">Planlanan Detay / Ürün</label>
-                        <input type="text" id="ornek_tur_detay" name="ornek_tur_detay" placeholder="Örn: Karpuz-YAS">
-                    </div>
-                </div>
-
-                <div class="form-group-inline">
-                    <div class="form-group">
-                        <label for="alinan_ornek_turu">Alınan Örnek Türü</label>
-                        <select id="alinan_ornek_turu" name="alinan_ornek_turu">
-                            <option value="">Seçiniz</option>
-                            <option value="Toprak">Toprak</option>
-                            <option value="Su">Su</option>
-                            <option value="Gübre">Gübre</option>
-                            <option value="Bitki">Bitki</option>
-                        </select>
-                    </div>
-
                     <div class="form-group">
                         <label for="ornek_ozelligi">Örnek Özelliği (Derinlik veya Bitki Türü)</label>
                         <input type="text" id="ornek_ozelligi" name="ornek_ozelligi" placeholder="Örn: (tek derinlik) 0-10 cm / (iki derinlik) 0-10 cm, 10-20 cm / bitki türü adı">
