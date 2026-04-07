@@ -82,7 +82,8 @@ const ENUMS = {
         "Konglomera",
         "Mermer",
         "Metamorfik",
-        "Ofiyolitik"
+        "Ofiyolit",
+        "Şist"
     ],
     ALINAN_ORNEK_TURLERI: ["Toprak", "Su", "Gübre", "Bitki"]
 };
