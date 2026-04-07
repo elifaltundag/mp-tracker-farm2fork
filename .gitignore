@@ -24,8 +24,12 @@ node_modules/
 mongo_data/
 internal/
 
+# Virtual environments
+.venv/
+
 .claude/
 .codex
 
 CLAUDE.md
 ROADMAP.md
+mp-data.xlsx
