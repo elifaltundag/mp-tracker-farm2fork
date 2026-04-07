@@ -151,6 +151,18 @@ docker exec -it microplastic_api black app/
 docker exec -it microplastic_api pytest tests/
 ```
 
+### Excel Import Script
+
+Frontend'deki "Excel İçe Aktar" butonunu beklemeden veri girmek için backend tarafında bağımsız bir script eklendi:
+
+```bash
+cd backend
+python scripts/import_excel.py ../data/ornekler.xlsx --dry-run
+python scripts/import_excel.py ../data/ornekler.xlsx --api-url http://localhost:8000/api/v1
+```
+
+Script, Excel satırlarını mevcut `POST /api/v1/samples` endpoint'ine gönderir. Böylece backend doğrulama kuralları ve tekillik kontrolleri korunur.
+
 ---
 
 ## 🔧 Sorun Giderme
