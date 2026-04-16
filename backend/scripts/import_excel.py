@@ -10,6 +10,7 @@ from __future__ import annotations
 import argparse
 import json
 import math
+import re
 from datetime import date, datetime
 from pathlib import Path
 from typing import Any, Dict, Iterable, Optional
@@ -315,6 +316,8 @@ def parse_number(value: Any) -> Optional[float]:
         return float(value)
 
     text = str(value).replace("%", "").strip()
+    if text.endswith("°"):
+        text = text[:-1].strip()
     if "," in text and "." not in text:
         text = text.replace(",", ".")
 
@@ -461,25 +464,39 @@ def split_planlanan_ornek_turu(raw_value: Any) -> tuple[Optional[str], Optional[
     return text, None
 
 
+def normalize_ornek_turu_value(value: Optional[str]) -> Optional[str]:
+    if value is None:
+        return None
+    return "Su" if normalize_key(value) == "yas" else value
+
+
+def contains_numeric_value(value: Optional[str]) -> bool:
+    return bool(value and re.search(r"\d", value))
+
+
 def build_ornek_ozellik(depth_1: Any, depth_2: Any) -> Optional[str]:
     depth_1_text = parse_text(depth_1)
     depth_2_text = parse_text(depth_2)
 
     def format_depth_value(text: str) -> str:
-        return text if text == "Su" else f"{text} cm"
+        return f"{text} cm" if contains_numeric_value(text) else text
 
     if not depth_1_text and not depth_2_text:
         return None
 
+    has_numeric_depth = contains_numeric_value(depth_1_text) or contains_numeric_value(depth_2_text)
+
     if depth_1_text and depth_2_text:
         if depth_1_text == depth_2_text:
-            return format_depth_value(depth_1_text)
-        return f"{format_depth_value(depth_1_text)}, {format_depth_value(depth_2_text)}"
+            result = format_depth_value(depth_1_text)
+        else:
+            result = f"{format_depth_value(depth_1_text)}, {format_depth_value(depth_2_text)}"
+    elif depth_1_text:
+        result = format_depth_value(depth_1_text)
+    else:
+        result = format_depth_value(depth_2_text)
 
-    if depth_1_text:
-        return format_depth_value(depth_1_text)
-
-    return format_depth_value(depth_2_text)
+    return f"Derinlik: {result}" if has_numeric_depth else result
 
 
 def apply_excel_specific_rules(row: pd.Series, payload: Dict[str, Any]) -> Dict[str, Any]:
@@ -507,6 +524,7 @@ def apply_excel_specific_rules(row: pd.Series, payload: Dict[str, Any]) -> Dict[
         payload["ornek_turu"] = inferred_ornek_turu
 
     parsed_tur, parsed_detay = split_planlanan_ornek_turu(planlanan_ornek_turu)
+    parsed_tur = normalize_ornek_turu_value(parsed_tur)
     if parsed_tur:
         set_nested_value(payload, "ornek.tur", parsed_tur)
     if parsed_detay:

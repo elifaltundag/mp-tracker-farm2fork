@@ -27,5 +27,7 @@ Notlar:
 - `Planlanan Örnek Türü` kolonu once virgulden, virgul yoksa ilk bosluktan bolunur:
   ilk parca `ornek.tur`, kalan kisim `ornek.planlanan_detay` olur.
 - `Detay` kolonu `konum.ozel_aciklama` alanina gider.
-- `Örnek Derinliği (cm) [1]` ve `[2]` doluysa `ornek.ozellik` alani `K-L cm` olarak olusturulur.
+- `Örnek Derinliği (cm) [1]` ve `[2]` alanlari `ornek.ozellik` icin birlestirilir.
+  Degerlerde sayi varsa basina `Derinlik: ` eklenir ve sadece sayisal hucreler `cm` ile formatlanir.
+  Sayi icermeyen metin degerlere ek yapilmaz.
   Hucreler merge ise dolu olan deger tek basina kullanilir.
